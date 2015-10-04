@@ -5,6 +5,8 @@ sphinxcontrib-ros紹介
 
 by otamachan
 
+(http://otamachan.github.io/slide-sphinxcontrib-ros/)
+
 自己紹介
 --------
 
@@ -394,7 +396,7 @@ Indigo/Jadeの
 ----------------------
 
 * **Hope your happy ROS documentation life with Sphinx!**
-* **Any feedback is wellcome!** -> 
+* **Any feedback is wellcome!** → `GitHub <https://github.com/otamachan/sphinxcontrib-ros>`_
 
 * ちなみにこのスライドもSphinxで記載しています
 
