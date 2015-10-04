@@ -291,14 +291,28 @@ automessage
 オプションとか
 ---------------
 
+.. raw:: html
+
+    <div>
+      <iframe style="height:520px" src="http://otamachan.github.io/sphinxcontrib-ros/howto.html#directive-ros:automessage" frameborder="0"></iframe>
+    </div>
+
 (3)インターフェース定義
 ------------------------
+
+.. rst-class:: small
+
+.. literalinclude:: _sample/node.rst
+   :language: rst
 
 出力例
 --------
 
-オプションとか
----------------
+.. raw:: html
+
+    <div>
+      <iframe style="height:520px" src="sample/node.html" frameborder="0"></iframe>
+    </div>
 
 サンプル
 ---------
