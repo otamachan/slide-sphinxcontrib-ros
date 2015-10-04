@@ -163,7 +163,7 @@ SphinxでもROSのドキュメントかっこよく書きたい
 sphinxcontrib-rosの紹介
 ------------------------
 
-sphinxcontrib-ros
+`sphinxcontrib-ros <https://pypi.python.org/pypi/sphinxcontrib-ros>`_
   SphinxでROSのドキュメンテーションをするための拡張
 
   #. シンタックスハイライト
@@ -316,7 +316,7 @@ Indigo/Jadeの
 .. raw:: html
 
     <div>
-      <iframe style="height:520px" src="http://otamachan.github.io/sphinxros/indigo/" frameborder="0"></iframe>
+      <iframe style="height:520px" src="http://otamachan.github.io/sphinxros/jade/" frameborder="0"></iframe>
     </div>
 
 自プロジェクトで使う時
@@ -380,6 +380,7 @@ Indigo/Jadeの
 ----------------------
 
 * **Hope your happy ROS documentation life with Sphinx!**
+* **Any feedback is wellcome!** -> 
 
 * ちなみにこのスライドもSphinxで記載しています
 

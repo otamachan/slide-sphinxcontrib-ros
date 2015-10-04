@@ -14,4 +14,4 @@ pygments_style = 'sphinx'
 html_theme = 'classic'
 html_static_path = []
 intersphinx_mapping = {'ros':
-  ('http://otamachan.github.io/sphinxros/indigo/', None)}
+  ('http://otamachan.github.io/sphinxros/jade/', None)}
