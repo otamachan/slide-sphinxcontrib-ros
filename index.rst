@@ -401,6 +401,5 @@ Indigo/Jadeの
 * ちなみにこのスライドもSphinxで記載しています
 
   * 拡張: `hieroglyph <https://github.com/nyergler/hieroglyph>`_
-  * Source: `github.com <https://github.com/otamachan/sphinxcontrib-ros-slide/blob/master/index.rst>`_
-  * Build: `travis-ci.com <https://travis-ci.org/otamachan/sphinxcontrib-ros-slide/>`_
-  * Slide: `gitbub.io <http://otamachan.github.io/sphinxcontrib-ros-slide/>`_
+  * Source: `github.com <https://github.com/otamachan/slide-sphinxcontrib-ros/blob/master/index.rst>`_
+  * Build: `travis-ci.com <https://travis-ci.org/otamachan/slide-sphinxcontrib-ros/>`_
