@@ -1,0 +1,25 @@
+sudo: false
+language: python
+python:
+  - "2.7"
+branches:
+  only: 
+    - master
+env:
+  global:
+    - GH_REF: github.com/otamachan/sphinxcontrib-ros-slide.git
+    - secure: "jdk3m1zl417YySbL/79kGr33iFJfjjYOOk9nHjvpIYz0tdHwAkYirp+Fru/fTyBFYOQ7Q+D+7ajY/NqqIdD/SmkGRgVwAz0h6fyMP1djl3h4Y0B4xw3l0d2/b6OuEUEYrs7CUwBF6Ba+o8nmiYuJ1vmNGx0HYekxgl1d/2p/VDhA2+h/7TP1nqIw4BrL8ltuwZMdageY37uA++Ued5yuRDb2kojrgEk6lu2oTMyw3z9MpinmGSEuB8rNCsh+22SxbKtRNm6u5UZH2wx9XnbAOhDciFS3Ao4do0zgZUt2aynZq8TsyT6KpKWJxjiNtv3Y936rRexX91tqSMFfgt0cqtT5XHzuRLC0knLyuZiP/c7YjD6yLFrqvHpgFcaBuXvzUBNtakWTmFab4xh91L5+jJ/dEptOwYraKfNQKW2B0E6ghthUlJ09KwH4w9Yp01r0qUq06tXD1b2zmpV0mqbsRnhkj1Pqgyr+W+iHR3LAPyFdr7rk1P3wwnLmpGlVah/uLv76cod65k/23C6H9Gdwf58ARKHDl6ypLPNefXR9/blOQ5832N7jPLGuSYluClSkHBchgdIT1+dkQtgmsErGt8mt/1r2a49vTqt3AzM45fQGskkrq2glQjGCc8XR5bGEjpmg7+mTdpgqe9YxQTFI+r9uiUW7jGWmxp8h+lLodew="
+install:
+  - pip install -q -r requirements.txt
+  - pip install git+https://github.com/otamachan/sphinxcontrib-ros.git
+script:
+  - make
+after_success:
+  - cd _build/slides
+  - git init
+  - git config user.name "Travis CI"
+  - git config user.email "otamachan@gmail.com"
+  - touch .nojekyll
+  - git add .
+  - git commit -m "Deploy to GitHub Pages"
+  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:gh-pages > /dev/null 2>&1
