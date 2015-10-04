@@ -2,7 +2,7 @@
 sphinxcontrib-ros-slide
 ========================
 
-* Slide: http://otamachan.github.io/sphinxcontrib-ros-slide/
+* Slide: http://otamachan.github.io/slide-sphinxcontrib-ros/
 
 .. image:: https://travis-ci.org/otamachan/slide-sphinxcontrib-ros.svg?branch=master
    :target: https://travis-ci.org/otamachan/slide-sphinxcontrib-ros
