@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>sphinxcontrib-ros紹介 &mdash; slide 0.1.0 ドキュメント</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/styles.css" type="text/css" />
+    <link rel="stylesheet" href="_static/single.css" type="text/css" />
+    
+    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/common.js"></script>
+    
+    <script type="text/javascript" src="_static/slides.js"></script>
+    <script type="text/javascript" src="_static/sync.js"></script>
+    <script type="text/javascript" src="_static/controller.js"></script>
+    <script type="text/javascript" src="_static/init.js"></script>
+    
+    
+    <link rel="top" title="slide 0.1.0 ドキュメント" href="#" /> 
+  </head>
+  <body>
+
+<section
+   id="slide_container"
+   class='slides layout-regular'>
+
+
+  
+<article class="slide level-1" id="sphinxcontrib-ros">
+
+<h1>sphinxcontrib-ros紹介</h1>
+
+<p>第7回ROS勉強会＠ドワンゴ</p>
+<p>by otamachan</p>
+<p>(<a class="reference external" href="http://otamachan.github.io/slide-sphinxcontrib-ros/">http://otamachan.github.io/slide-sphinxcontrib-ros/</a>)</p>
+
+
+
+<div class="slide-no">1</div>
+
+
+</article>
+<article class="slide level-2" id="id1">
+
+<h2>自己紹介</h2>
+
+<ul class="simple">
+<li>Name: Tamaki Nishino</li>
+<li>ID: otamachan (Twitter: otamasan)</li>
+<li>愛知県在住サラリーマンで3児のお父さん</li>
+<li>ROSは今年の1月から使い始めました</li>
+<li>勉強会発表初めて枠<ul>
+<li>Tシャツにつられてしまいました・・・</li>
+<li>Tシャツ駆動開発</li>
+<li>Tシャツ怖い</li>
+</ul>
+</li>
+</ul>
+
+
+
+<div class="slide-no">2</div>
+
+
+</article>
+<article class="slide level-2" id="id2">
+
+<h2>ところで</h2>
+
+<ul class="simple">
+<li>みなさんはドキュメント書いてますか？</li>
+<li>ドキュメント書くの好きですか？</li>
+</ul>
+
+
+
+<div class="slide-no">3</div>
+
+
+</article>
+<article class="slide level-2" id="id3">
+
+<h2>私は好きではありません</h2>
+
+<p>ドキュメント書いていたはずなのに、気づいたら、</p>
+<blockquote>
+<div><ul class="simple">
+<li>音声認識で文書生成するプログラム書いてる</li>
+<li>Texのマクロいじってる</li>
+<li>Sphinxの拡張書いてる</li>
+</ul>
+</div></blockquote>
+<p>ことが多々・・・</p>
+<p>そんな私ですが、今日はROSのドキュメンテーションツールを紹介します。</p>
+
+
+
+<div class="slide-no">4</div>
+
+
+</article>
+<article class="slide level-2" id="id4">
+
+<h2>目次</h2>
+
+<ol class="arabic simple">
+<li>Sphinxの紹介</li>
+<li>sphinxcontrib-rosの紹介</li>
+<li>まとめ</li>
+</ol>
+
+
+
+<div class="slide-no">5</div>
+
+
+</article>
+<article class="slide level-2" id="sphinx">
+
+<h2>まずはSphinxの紹介</h2>
+
+<dl class="docutils">
+<dt><a class="reference external" href="http://sphinx-users.jp/">Sphinx</a> とは</dt>
+<dd><ul class="first last simple">
+<li>Pythonで書かれたドキュメンテーションツール</li>
+<li>reStructuredText(マークアップ言語)でドキュメントを記述</li>
+<li>HTML, PDF, ePub等出力フォーマットが豊富</li>
+<li>HTMLのテーマも豊富</li>
+<li>多言語対応のドキュメントも書ける</li>
+<li><a class="reference external" href="http://docs.python.jp/3/">Python</a> のドキュメントに使用されている</li>
+<li><a class="reference external" href="https://readthedocs.org/">ReadTheDoc</a> といったホスティングサービスも</li>
+</ul>
+</dd>
+</dl>
+
+
+
+<div class="slide-no">6</div>
+
+
+</article>
+<article class="slide level-2" id="id6">
+
+<h2>こんな感じで書くと</h2>
+
+<div class="small highlight-rst"><div class="highlight"><pre><span class="gh">すごいドキュメント</span>
+<span class="gh">------------------</span>
+
+<span class="gh">始めに</span>
+<span class="gh">======</span>
+
+すごいドキュメントに関して記述します。
+<span class="s">`リンク </span><span class="si">&lt;http://www.ros.org&gt;</span><span class="s">`_</span> を参考にしてください。
+
+<span class="m">*</span> リスト1
+<span class="m">*</span> リスト2
+
+<span class="gh">コード</span>
+<span class="gh">======</span>
+
+<span class="p">..</span> <span class="ow">code-block</span><span class="p">::</span> <span class="k">c</span>
+
+   <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+       <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello World!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+   <span class="p">}</span>
+
+<span class="gh">参考文献</span>
+<span class="gh">========</span>
+
+=========== ==================================
+言語        本の名前
+=========== ==================================
+Ruby        dRubyによる分散・Webプログラミング
+Python      集合知プログラミング
+=========== ==================================
+</pre></div>
+</div>
+
+
+
+<div class="slide-no">7</div>
+
+
+</article>
+<article class="slide level-2" id="id7">
+
+<h2>こんな風にかっこよく出力してくれる</h2>
+
+<div>
+  <iframe style="height:520px" src="sample/sample.html" frameborder="0"></iframe>
+</div>
+
+
+<div class="slide-no">8</div>
+
+
+</article>
+<article class="slide level-2" id="id8">
+
+<h2>良い点(個人的な感想)</h2>
+
+<ul class="simple">
+<li>簡単にかっこ良く書ける</li>
+<li>Gitとかで管理しやすい</li>
+<li>Pythonで拡張が書ける!</li>
+</ul>
+
+
+
+<div class="slide-no">9</div>
+
+
+</article>
+<article class="slide level-2" id="id9">
+
+<h2>使いづらい点(個人的な感想)</h2>
+
+<ul class="simple">
+<li>細かい表現がしづらい(表とか)</li>
+<li>WYSIWYGでない(ビルドのタイムラグがある)</li>
+<li>ソフト屋さんでないと敷居が少し高い</li>
+</ul>
+
+
+
+<div class="slide-no">10</div>
+
+
+</article>
+<article class="slide level-2" id="id10">
+
+<h2>ロボット界でもちらほらSphinxが</h2>
+
+
+
+
+<div class="slide-no">11</div>
+
+
+</article>
+<article class="slide level-2" id="naoqi-pepper">
+
+<h2>NAOqi(Pepper)</h2>
+
+<ul class="simple">
+<li><a class="reference external" href="http://doc.aldebaran.com/2-1/index.html">http://doc.aldebaran.com/2-1/index.html</a></li>
+</ul>
+<div>
+  <iframe style="height:500px" src="http://doc.aldebaran.com/2-1/index.html" frameborder="0"></iframe>
+</div>
+
+
+<div class="slide-no">12</div>
+
+
+</article>
+<article class="slide level-2" id="fetch-robotics">
+
+<h2>fetch robotics</h2>
+
+<ul class="simple">
+<li><a class="reference external" href="http://docs.fetchrobotics.com/">http://docs.fetchrobotics.com/</a></li>
+</ul>
+<div>
+  <iframe style="height:500px" src="http://docs.fetchrobotics.com/" frameborder="0"></iframe>
+</div>
+
+
+<div class="slide-no">13</div>
+
+
+</article>
+<article class="slide level-2" id="choreonoid">
+
+<h2>Choreonoid</h2>
+
+<ul class="simple">
+<li><a class="reference external" href="http://choreonoid.org/en/">http://choreonoid.org/en/</a></li>
+</ul>
+<div>
+  <iframe style="height:500px" src="http://choreonoid.org/en/" frameborder="0"></iframe>
+</div>
+
+
+<div class="slide-no">14</div>
+
+
+</article>
+<article class="slide level-2" id="rosros-wiki">
+
+<h2>ROSのドキュメントといえばROS wiki</h2>
+
+<div>
+  <iframe style="height:520px" src="http://wiki.ros.org/Documentation" frameborder="0"></iframe>
+</div>
+
+
+<div class="slide-no">15</div>
+
+
+</article>
+<article class="slide level-2" id="wiki">
+
+<h2>Wiki拡張で書けて</h2>
+
+<div>
+  <iframe style="height:520px" src="http://wiki.ros.org/amcl?action=raw" frameborder="0"></iframe>
+</div>
+
+
+<div class="slide-no">16</div>
+
+
+</article>
+<article class="slide level-2" id="api">
+
+<h2>パッケージやAPIを出力してくれる</h2>
+
+<div>
+  <iframe style="height:520px" src="http://wiki.ros.org/amcl#line-2" frameborder="0"></iframe>
+</div>
+
+
+<div class="slide-no">17</div>
+
+
+</article>
+<article class="slide level-2" id="id11">
+
+<h2>かっこいい</h2>
+
+<ul class="build simple">
+<li>かも</li>
+</ul>
+
+
+
+<div class="slide-no">18</div>
+
+
+</article>
+<article class="slide level-2" id="sphinxros">
+
+<h2>SphinxでもROSのドキュメントかっこよく書きたい</h2>
+
+
+
+
+<div class="slide-no">19</div>
+
+
+</article>
+<article class="slide level-2" id="id12">
+
+<h2>sphinxcontrib-rosの紹介</h2>
+
+<dl class="docutils">
+<dt><a class="reference external" href="https://pypi.python.org/pypi/sphinxcontrib-ros">sphinxcontrib-ros</a></dt>
+<dd><p class="first">SphinxでROSのドキュメンテーションをするための拡張</p>
+<ol class="arabic simple">
+<li>シンタックスハイライト</li>
+<li>パッケージ概要</li>
+<li>メッセージ定義</li>
+<li>インタフェース</li>
+</ol>
+<p class="last">が書ける。</p>
+</dd>
+</dl>
+
+
+
+<div class="slide-no">20</div>
+
+
+</article>
+<article class="slide level-2" id="id14">
+
+<h2>インストール</h2>
+
+<ol class="arabic">
+<li><p class="first">パッケージインストール</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>pip install sphinxcontrib-ros
+</pre></div>
+</div>
+</li>
+<li><p class="first">設定ファイル(<code class="docutils literal"><span class="pre">conf.py</span></code>)に追加</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># 拡張の追加</span>
+<span class="n">extenstions</span> <span class="o">+=</span> <span class="p">[</span><span class="s">&#39;sphinxcontrib.ros&#39;</span><span class="p">]</span>
+<span class="c"># パッケージパスを指定</span>
+<span class="n">ros_base_path</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;../src&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+</ol>
+
+
+
+<div class="slide-no">21</div>
+
+
+</article>
+<article class="slide level-2" id="id15">
+
+<h2>(1)シンタックスハイライト</h2>
+
+<div class="small highlight-rst"><div class="highlight"><pre><span class="gh">シンタックスハイライト</span>
+<span class="gh">======================</span>
+
+<span class="p">..</span> <span class="ow">code-block</span><span class="p">::</span> <span class="k">rostype</span>
+
+<span class="s">   # The joint trajectory to follow</span>
+<span class="s">   trajectory_msgs/JointTrajectory trajectory</span>
+
+<span class="s">   # Tolerances for the trajectory.  If the measured joint values fall</span>
+<span class="s">   # outside the tolerances the trajectory goal is aborted.  Any</span>
+<span class="s">   # tolerances that are not specified (by being omitted or set to 0) are</span>
+<span class="s">   # set to the defaults for the action server (often taken from the</span>
+<span class="s">   # parameter server).</span>
+
+<span class="s">   # Tolerances applied to the joints as the trajectory is executed.  If</span>
+<span class="s">   # violated, the goal aborts with error_code set to</span>
+<span class="s">   # PATH_TOLERANCE_VIOLATED.</span>
+<span class="s">   JointTolerance[] path_tolerance</span>
+
+<span class="s">   # To report success, the joints must be within goal_tolerance of the</span>
+<span class="s">   # final trajectory value.  The goal must be achieved by time the</span>
+<span class="s">   # trajectory ends plus goal_time_tolerance.  (goal_time_tolerance</span>
+<span class="s">   # allows some leeway in time, so that the trajectory goal can still</span>
+<span class="s">   # succeed even if the joints reach the goal some time after the</span>
+<span class="s">   # precise end time of the trajectory).</span>
+<span class="s">   #</span>
+<span class="s">   # If the joints are not within goal_tolerance after &quot;trajectory finish</span>
+<span class="s">   # time&quot; + goal_time_tolerance, the goal aborts with error_code set to</span>
+<span class="s">   # GOAL_TOLERANCE_VIOLATED</span>
+<span class="s">   JointTolerance[] goal_tolerance</span>
+</pre></div>
+</div>
+
+
+
+<div class="slide-no">22</div>
+
+
+</article>
+<article class="slide level-2" id="id16">
+
+<h2>出力</h2>
+
+<div>
+  <iframe style="height:520px" src="sample/syntax.html" frameborder="0"></iframe>
+</div>
+
+
+<div class="slide-no">23</div>
+
+
+</article>
+<article class="slide level-2" id="id17">
+
+<h2>(2)パッケージ概要</h2>
+
+<div class="highlight-rst"><div class="highlight"><pre><span class="gh">すごいパッケージ</span>
+<span class="gh">================</span>
+
+<span class="gh">パッケージ概要</span>
+<span class="gh">--------------</span>
+
+<span class="p">..</span> <span class="ow">ros:package</span><span class="p">::</span> my_great_package
+
+   <span class="nc">:version:</span> <span class="nf">0.1.0</span>
+   <span class="nc">:author:</span> <span class="nf">Great Person</span>
+
+   これはスゴイパッケージです。
+
+   こんな実装になっています。
+
+<span class="gh">他のセクション</span>
+<span class="gh">--------------</span>
+
+実装は、 <span class="na">:ros:pkg:</span><span class="nv">`my_great_package`</span> を参考にしています。
+</pre></div>
+</div>
+
+
+
+<div class="slide-no">24</div>
+
+
+</article>
+<article class="slide level-2" id="id18">
+
+<h2>出力</h2>
+
+<div>
+  <iframe style="height:520px" src="sample/package.html" frameborder="0"></iframe>
+</div>
+
+
+<div class="slide-no">25</div>
+
+
+</article>
+<article class="slide level-2" id="id19">
+
+<h2>めんどくさい</h2>
+
+
+
+
+<div class="slide-no">26</div>
+
+
+</article>
+<article class="slide level-2" id="package-xml">
+
+<h2>package.xml</h2>
+
+<div class="highlight-xml"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="nt">&lt;package&gt;</span>
+  <span class="nt">&lt;name&gt;</span>my_great_package_auto<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;version&gt;</span>0.0.0<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;description&gt;</span>The is a great package<span class="nt">&lt;/description&gt;</span>
+  <span class="nt">&lt;maintainer</span> <span class="na">email=</span><span class="s">&quot;john@mail.com&quot;</span><span class="nt">&gt;</span>John Smith<span class="nt">&lt;/maintainer&gt;</span>
+  <span class="nt">&lt;license&gt;</span>BSD<span class="nt">&lt;/license&gt;</span>
+  <span class="nt">&lt;url&gt;</span>http://google.com<span class="nt">&lt;/url&gt;</span>
+  <span class="nt">&lt;author</span> <span class="na">email=</span><span class="s">&quot;jane.doe@example.com&quot;</span><span class="nt">&gt;</span>Jane Doe<span class="nt">&lt;/author&gt;</span>
+  <span class="nt">&lt;build_depend&gt;</span>another_package<span class="nt">&lt;/build_depend&gt;</span>
+  <span class="nt">&lt;buildtool_depend&gt;</span>package_x<span class="nt">&lt;/buildtool_depend&gt;</span>
+  <span class="nt">&lt;run_depend&gt;</span>package_y<span class="nt">&lt;/run_depend&gt;</span>
+  <span class="nt">&lt;test_depend&gt;</span>package_z<span class="nt">&lt;/test_depend&gt;</span>
+  <span class="nt">&lt;export&gt;</span>
+  <span class="nt">&lt;/export&gt;</span>
+<span class="nt">&lt;/package&gt;</span>
+</pre></div>
+</div>
+
+
+
+<div class="slide-no">27</div>
+
+
+</article>
+<article class="slide level-2" id="autopackage">
+
+<h2>autopackage</h2>
+
+<div class="highlight-rst"><div class="highlight"><pre><span class="gh">すごいパッケージ</span>
+<span class="gh">================</span>
+
+<span class="gh">パッケージ概要</span>
+<span class="gh">--------------</span>
+
+<span class="p">..</span> <span class="ow">ros:autopackage</span><span class="p">::</span> my_great_package_auto
+
+
+<span class="gh">他のセクション</span>
+<span class="gh">--------------</span>
+
+実装は、 <span class="na">:ros:pkg:</span><span class="nv">`my_great_package_auto`</span> を参考にしています。
+</pre></div>
+</div>
+
+
+
+<div class="slide-no">28</div>
+
+
+</article>
+<article class="slide level-2" id="id20">
+
+<h2>出力</h2>
+
+<div>
+  <iframe style="height:520px" src="sample/autopackage.html" frameborder="0"></iframe>
+</div>
+
+
+<div class="slide-no">29</div>
+
+
+</article>
+<article class="slide level-2" id="id21">
+
+<h2>(2)メッセージ定義</h2>
+
+<div class="highlight-rst"><div class="highlight"><pre><span class="gh">メッセージ一覧</span>
+<span class="gh">==============</span>
+
+<span class="gh">すごいメッセージ</span>
+<span class="gh">----------------</span>
+
+<span class="p">..</span> <span class="ow">ros:message</span><span class="p">::</span> my_great_package/GreatMessage
+
+   <span class="nc">:field Header header:</span> <span class="nf">ヘッダ</span>
+   <span class="nc">:field float64 x:</span> <span class="nf">x座標</span>
+
+   すごいメッセージです。
+
+<span class="gh">すごいアクション</span>
+<span class="gh">----------------</span>
+
+<span class="p">..</span> <span class="ow">ros:action</span><span class="p">::</span> my_great_package/GreatAction
+</pre></div>
+</div>
+
+
+
+<div class="slide-no">30</div>
+
+
+</article>
+<article class="slide level-2" id="id22">
+
+<h2>出力</h2>
+
+<div>
+  <iframe style="height:520px" src="sample/message.html" frameborder="0"></iframe>
+</div>
+
+
+<div class="slide-no">31</div>
+
+
+</article>
+<article class="slide level-2" id="id23">
+
+<h2>めんどくさい</h2>
+
+
+
+
+<div class="slide-no">32</div>
+
+
+</article>
+<article class="slide level-2" id="greatautomessage-msg">
+
+<h2>GreatAutoMessage.msg</h2>
+
+<div class="highlight-rostype"><div class="highlight"><pre><span class="c1"># Message Description</span>
+
+<span class="nb">Header</span> <span class="py">header</span> <span class="c1"># header</span>
+
+<span class="nb">float32</span> <span class="py">x</span> <span class="c1"># x position</span>
+<span class="nb">float32</span> <span class="py">y</span> <span class="c1"># y position</span>
+
+<span class="nc">my_great_package/GreatMessage</span> <span class="py">field</span> <span class="c1"># great field</span>
+</pre></div>
+</div>
+
+
+
+<div class="slide-no">33</div>
+
+
+</article>
+<article class="slide level-2" id="automessage">
+
+<h2>automessage</h2>
+
+<div class="highlight-rst"><div class="highlight"><pre><span class="gh">メッセージ一覧</span>
+<span class="gh">==============</span>
+
+<span class="gh">すごいメッセージ</span>
+<span class="gh">----------------</span>
+
+<span class="p">..</span> <span class="ow">ros:automessage</span><span class="p">::</span> my_great_package_auto/GreatAutoMessage
+   <span class="nc">:field-comment:</span> <span class="nf">right1</span>
+
+<span class="gh">すごいアクション</span>
+<span class="gh">----------------</span>
+
+<span class="p">..</span> <span class="ow">ros:action</span><span class="p">::</span> my_great_package/GreatAction
+</pre></div>
+</div>
+
+
+
+<div class="slide-no">34</div>
+
+
+</article>
+<article class="slide level-2" id="id24">
+
+<h2>出力</h2>
+
+<div>
+  <iframe style="height:520px" src="sample/automessage.html" frameborder="0"></iframe>
+</div>
+
+
+<div class="slide-no">35</div>
+
+
+</article>
+<article class="slide level-2" id="id25">
+
+<h2>オプションとか</h2>
+
+<div>
+  <iframe style="height:520px" src="http://otamachan.github.io/sphinxcontrib-ros/howto.html#directive-ros:automessage" frameborder="0"></iframe>
+</div>
+
+
+<div class="slide-no">36</div>
+
+
+</article>
+<article class="slide level-2" id="id26">
+
+<h2>(3)インターフェース定義</h2>
+
+<div class="small highlight-rst"><div class="highlight"><pre><span class="gh">すごいノード</span>
+<span class="gh">============</span>
+
+<span class="gh">ノードAPI</span>
+<span class="gh">---------</span>
+
+<span class="p">..</span> <span class="ow">ros:node</span><span class="p">::</span> my_great_package/GreateNode
+
+   <span class="nc">:pub geometry_msgs/Vector3 ~pos:</span> <span class="nf">position of the robot</span>
+
+   <span class="nc">:sub geometry_msgs/Twist ~vel:</span> <span class="nf">reference velocity</span>
+
+   <span class="nc">:srv  std_srvs/Trigger ~trigger:</span> <span class="nf">trigger for start</span>
+
+   <span class="nc">:srv_called std_srvs/Empty ~beep:</span> <span class="nf">beep service</span>
+
+   <span class="nc">:action control_msgs/GripperCommand ~gripper:</span> <span class="nf">gripper action of the robot</span>
+
+   <span class="nc">:action_called moveit_msgs/Pickup ~pickup:</span> <span class="nf">pickup action</span>
+
+   <span class="nc">:param int32 clients:</span> <span class="nf">number of clients</span>
+   <span class="nc">:param-default clients:</span> <span class="nf">10</span>
+
+   <span class="nc">:param_set int32 motors:</span> <span class="nf">number of motors</span>
+
+   これはすごいノードです。
+</pre></div>
+</div>
+
+
+
+<div class="slide-no">37</div>
+
+
+</article>
+<article class="slide level-2" id="id27">
+
+<h2>出力例</h2>
+
+<div>
+  <iframe style="height:520px" src="sample/node.html" frameborder="0"></iframe>
+</div>
+
+
+<div class="slide-no">38</div>
+
+
+</article>
+<article class="slide level-2" id="id28">
+
+<h2>サンプル</h2>
+
+<p>Indigo/Jadeの</p>
+<ul class="simple">
+<li>全パッケージ(1858/664)</li>
+<li>全メッセージ</li>
+</ul>
+<p>を出力してみました。(TravisCI/Ubuntu14.04)</p>
+
+
+
+<div class="slide-no">39</div>
+
+
+</article>
+<article class="slide level-2" id="id29">
+
+<h2>出力</h2>
+
+<div>
+  <iframe style="height:520px" src="http://otamachan.github.io/sphinxros/jade/" frameborder="0"></iframe>
+</div>
+
+
+<div class="slide-no">40</div>
+
+
+</article>
+<article class="slide level-2" id="id30">
+
+<h2>自プロジェクトで使う時</h2>
+
+<ul class="simple">
+<li>下から全部メッセージ定義していくのめんどくさい</li>
+</ul>
+
+
+
+<div class="slide-no">41</div>
+
+
+</article>
+<article class="slide level-2" id="id31">
+
+<h2>大丈夫</h2>
+
+<ul>
+<li><p class="first">そんな時の <a class="reference external" href="http://sphinx-doc.org/latest/ext/intersphinx.html">sphinx.ext.intersphinx</a></p>
+<p><code class="docutils literal"><span class="pre">conf.py</span></code> に</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">extensions</span> <span class="o">+=</span> <span class="p">[</span><span class="s">&#39;sphinx.ext.intersphinx&#39;</span><span class="p">]</span>
+<span class="n">intersphinx_mapping</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;ros&#39;</span><span class="p">:</span>
+  <span class="p">(</span><span class="s">&#39;http://otamachan.github.io/sphinxros/indigo/&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)}</span>
+</pre></div>
+</div>
+<p>って書いておけば</p>
+</li>
+</ul>
+
+
+
+<div class="slide-no">42</div>
+
+
+</article>
+<article class="slide level-2" id="id32">
+
+<h2>適当に参照しても</h2>
+
+<div class="highlight-rst"><div class="highlight"><pre><span class="gh">sphinx.ext.intersphinx</span>
+<span class="gh">=======================</span>
+
+<span class="gh">参照</span>
+<span class="gh">----</span>
+
+このパッケージは <span class="na">:ros:pkg:</span><span class="nv">`actionlib`</span> を参考にしています。
+
+<span class="na">:ros:msg:</span><span class="nv">`control_msgs/JointControllerState`</span> の <span class="s">``i_clamp``</span> には対応していません。
+
+<span class="gh">型定義</span>
+<span class="gh">------</span>
+
+<span class="p">..</span> <span class="ow">ros:message</span><span class="p">::</span> my_package/MyNewMessage
+
+   <span class="nc">:field Header header:</span> <span class="nf">Header</span>
+   <span class="nc">:field geometry_msgs/Vector3 acc:</span> <span class="nf">Acceleration of the robot</span>
+</pre></div>
+</div>
+
+
+
+<div class="slide-no">43</div>
+
+
+</article>
+<article class="slide level-2" id="id33">
+
+<h2>出力</h2>
+
+<div>
+  <iframe style="height:520px" src="sample/intersphinx.html" frameborder="0"></iframe>
+</div>
+
+
+<div class="slide-no">44</div>
+
+
+</article>
+<article class="slide level-2" id="id34">
+
+<h2>まとめ</h2>
+
+<ul>
+<li><p class="first">Tシャツにつられてsphinxcontrib-rosを公開しました</p>
+</li>
+<li><p class="first">conf.pyに以下を追加するだけ</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">extensions</span> <span class="o">+=</span> <span class="p">[</span><span class="s">&#39;sphinxconrib.ros&#39;</span><span class="p">,</span> <span class="s">&#39;sphinx.ext.intersphinx&#39;</span><span class="p">]</span>
+<span class="n">ros_base_path</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;../src&#39;</span><span class="p">]</span>
+<span class="n">intersphinx_mapping</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;ros&#39;</span><span class="p">:</span>
+  <span class="p">(</span><span class="s">&#39;http://otamachan.github.io/sphinxros/indigo/&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)}</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">かっこよくROSのドキュメントが書けちゃうかも</p>
+</li>
+</ul>
+
+
+
+<div class="slide-no">45</div>
+
+
+</article>
+<article class="slide level-2" id="todo">
+
+<h2>今後のTODO</h2>
+
+<ul class="simple">
+<li>ちゃんとsphinxcontrib-rosの <strong>ドキュメント書く</strong></li>
+<li>テスト真面目に書く</li>
+<li><code class="docutils literal"><span class="pre">:ros:wiki:`package`</span></code> Roleの追加</li>
+</ul>
+
+
+
+<div class="slide-no">46</div>
+
+
+</article>
+<article class="slide level-2" id="id35">
+
+<h2>ありがとうございました</h2>
+
+<ul class="simple">
+<li><strong>Hope your happy ROS documentation life with Sphinx!</strong></li>
+<li><strong>Any feedback is wellcome!</strong> → <a class="reference external" href="https://github.com/otamachan/sphinxcontrib-ros">GitHub</a></li>
+<li>ちなみにこのスライドもSphinxで記載しています<ul>
+<li>拡張: <a class="reference external" href="https://github.com/nyergler/hieroglyph">hieroglyph</a></li>
+<li>Source: <a class="reference external" href="https://github.com/otamachan/slide-sphinxcontrib-ros/blob/master/index.rst">github.com</a></li>
+<li>Build: <a class="reference external" href="https://travis-ci.org/otamachan/slide-sphinxcontrib-ros/">travis-ci.com</a></li>
+</ul>
+</li>
+</ul>
+
+
+
+<div class="slide-no">47</div>
+
+
+</article>
+
+</section>
+
+<section id="slide_notes">
+
+</section>
+
+  </body>
+</html>
